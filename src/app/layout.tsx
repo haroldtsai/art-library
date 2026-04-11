@@ -4,7 +4,7 @@ import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
 
 export const metadata: Metadata = {
-  title: 'The Harold Collection',
+  title: 'ARTLIFE Collection',
   description: 'A personal archive of art, vinyl, sculpture, and design.',
 }
 
