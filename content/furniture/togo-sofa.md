@@ -12,7 +12,7 @@ medium: Polyurethane foam, fabric upholstery
 acquired: 私人收藏
 refs:
   - label: Ligne Roset Official
-    url: https://www.ligne-roset.com/us/furniture/sofas/togo/
+    url: https://www.ligne-roset.com/us/
 ---
 
 Michel Ducaroy 在 1973 年為 Ligne Roset 設計的 Togo，是二十世紀最具辨識度的沙發之一。沒有木製骨架，完全由高密度聚氨酯泡棉構成，坐下去的瞬間整個人被包覆，像是沉入一個溫柔的容器。

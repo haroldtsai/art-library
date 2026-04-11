@@ -113,14 +113,17 @@ export default async function ItemPage({
             {(item.tags ?? []).length > 0 && (
               <div className="mt-8 pt-6 border-t border-[var(--rule)]">
                 <p className="label mb-3">Tags</p>
-                <div className="flex gap-2 flex-wrap">
-                  {item.tags!.map((tag) => (
-                    <Link key={tag} href={`/${category}?tag=${tag}`}
-                      className="label px-3 py-1 border border-[var(--rule)] hover:border-[var(--accent)] hover:text-[var(--accent)] transition-all">
-                      {tag}
-                    </Link>
+                <p className="label" style={{ color: 'var(--text)', letterSpacing: '0.12em' }}>
+                  {item.tags!.map((tag, i) => (
+                    <span key={tag}>
+                      <Link href={`/${category}?tag=${tag}`}
+                        className="hover:text-[var(--accent)] transition-colors">
+                        {tag}
+                      </Link>
+                      {i < item.tags!.length - 1 && <span className="mx-2 text-[var(--rule)]">/</span>}
+                    </span>
                   ))}
-                </div>
+                </p>
               </div>
             )}
 
