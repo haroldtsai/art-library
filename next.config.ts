@@ -9,9 +9,8 @@ const nextConfig: NextConfig = {
         hostname: '*.r2.cloudflarestorage.com',
       },
       {
-        // Custom R2 domain (optional) — add your domain here
         protocol: 'https',
-        hostname: '*.r2.dev',
+        hostname: 'pub-bebe97f227cf4bb689ed500f67508e13.r2.dev',
       },
     ],
   },
