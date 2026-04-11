@@ -1,36 +1,100 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# The Harold Collection
 
-## Getting Started
+A personal art collection website. Built with Next.js App Router, Markdown content files, and Cloudflare R2 for images.
 
-First, run the development server:
+## Development
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev      # http://localhost:3000
+npm run build    # production build
+npm test         # run tests
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Adding a New Artwork
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. **Upload the image to Cloudflare R2**
+   - Open the R2 dashboard → your bucket
+   - Upload file, copy the public URL
+   - Recommended naming: `collection/<category>/<slug>-01.jpg`
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+2. **Create a Markdown file**
 
-## Learn More
+   ```
+   content/<category>/<slug>.md
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+   Example frontmatter:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+   ```yaml
+   ---
+   title: Kind of Blue
+   category: vinyl
+   artist: Miles Davis
+   label: Columbia
+   year: 1959
+   image: https://<your-r2-domain>/collection/vinyl/kind-of-blue-01.jpg
+   tags: [jazz, modal, essential]
+   featured: false          # set true to show in Featured strip
+   dateAdded: "2024-06-01"  # ISO date, used for "Recent" ordering
+   refs:
+     - label: AllMusic
+       url: https://www.allmusic.com/...
+   ---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+   Your personal notes in Markdown...
+   ```
 
-## Deploy on Vercel
+3. **Push to git** — Vercel auto-deploys within ~1 minute.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Adding a New Category
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Just create a new folder under `content/`:
+
+```
+content/prints/   ← new category, auto-discovered
+```
+
+No code changes needed. The nav, listing pages, and filters all pick it up automatically.
+
+To add filter options for the new category, edit `src/config/filters.ts`:
+
+```ts
+prints: {
+  pills: ['tags', 'medium'],
+  sort: ['year', 'dateAdded'],
+},
+```
+
+## Frontmatter Reference
+
+| Field | Type | Required | Notes |
+|-------|------|----------|-------|
+| `title` | string | ✓ | Display title |
+| `category` | string | ✓ | Must match folder name |
+| `image` | string | ✓ | Primary image URL (R2) |
+| `year` | number | | Year of creation/release |
+| `artist` | string | | Creator name |
+| `label` | string | | Record label / manufacturer |
+| `medium` | string | | e.g. "Oil on Canvas" |
+| `size` | string | | Dimensions |
+| `acquired` | string | | Acquisition note |
+| `genre` | string | | For vinyl/CD filter tabs |
+| `tags` | string[] | | Free-form tags |
+| `featured` | boolean | | Show in Featured strip |
+| `images` | string[] | | Additional photos |
+| `refs` | `{label, url}[]` | | External reference links |
+| `dateAdded` | string | | ISO date for sort order |
+
+## Image Storage (Cloudflare R2)
+
+- R2 bucket: configure in Cloudflare dashboard
+- Add your R2 public hostname to `next.config.ts` → `images.remotePatterns`
+- Upload images manually via R2 dashboard; paste URL into frontmatter
+- Free tier: 10 GB storage, no egress fees
+
+## Deploy
+
+1. Push to GitHub
+2. Connect repo to Vercel (one-time)
+3. Every `git push main` auto-deploys
