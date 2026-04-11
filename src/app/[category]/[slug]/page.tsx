@@ -97,33 +97,9 @@ export default async function ItemPage({
               </div>
             )}
 
-            {/* Tags */}
-            {(item.tags ?? []).length > 0 && (
-              <div className="flex gap-2 flex-wrap mt-6">
-                {item.tags!.map((tag) => (
-                  <Link key={tag} href={`/${category}?tag=${tag}`}
-                    className="label px-3 py-1 border border-[var(--rule)] hover:border-[var(--accent)] hover:text-[var(--accent)] transition-all">
-                    {tag}
-                  </Link>
-                ))}
-              </div>
-            )}
-
-            {/* External refs */}
-            {(item.refs ?? []).length > 0 && (
-              <div className="mt-7">
-                <p className="label mb-[10px]">References</p>
-                {item.refs!.map((ref) => (
-                  <a key={ref.url} href={ref.url} target="_blank" rel="noopener noreferrer"
-                    className="label block mb-[6px] hover:text-[var(--accent)] transition-colors">
-                    → {ref.label}
-                  </a>
-                ))}
-              </div>
-            )}
           </div>
 
-          {/* Metadata */}
+          {/* Metadata + Tags + Refs */}
           <div className="px-9 py-8 bg-[var(--bg2)]">
             <div className="grid grid-cols-2 gap-x-6 gap-y-4">
               {metaFields.map((f) => (
@@ -133,6 +109,29 @@ export default async function ItemPage({
                 </div>
               ))}
             </div>
+
+            {(item.tags ?? []).length > 0 && (
+              <div className="flex gap-2 flex-wrap mt-6 pt-5 border-t border-[var(--rule)]">
+                {item.tags!.map((tag) => (
+                  <Link key={tag} href={`/${category}?tag=${tag}`}
+                    className="label px-3 py-1 border border-[var(--rule)] hover:border-[var(--accent)] hover:text-[var(--accent)] transition-all">
+                    {tag}
+                  </Link>
+                ))}
+              </div>
+            )}
+
+            {(item.refs ?? []).length > 0 && (
+              <div className="mt-5 pt-5 border-t border-[var(--rule)]">
+                <p className="label mb-[10px]">References</p>
+                {item.refs!.map((ref) => (
+                  <a key={ref.url} href={ref.url} target="_blank" rel="noopener noreferrer"
+                    className="label block mb-[6px] hover:text-[var(--accent)] transition-colors">
+                    → {ref.label}
+                  </a>
+                ))}
+              </div>
+            )}
           </div>
 
         </div>
