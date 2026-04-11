@@ -8,17 +8,18 @@ export default function ArtCard({ item }: { item: ArtworkItem }) {
       href={`/${item.category}/${item.slug}`}
       className="group block bg-[var(--bg)] hover:bg-[var(--bg3)] transition-colors overflow-hidden"
     >
-      <div className="overflow-hidden relative" style={{ height: 240 }}>
+      <div className="overflow-hidden">
         {item.image ? (
           <Image
             src={item.image}
             alt={item.title}
-            fill
+            width={800}
+            height={600}
             sizes="(max-width: 768px) 100vw, 50vw"
-            className="object-cover saturate-[0.78] contrast-[1.02] group-hover:saturate-95 transition-all duration-300 group-hover:scale-[1.03]"
+            className="w-full h-auto saturate-[0.78] contrast-[1.02] group-hover:saturate-95 transition-all duration-300 group-hover:scale-[1.03]"
           />
         ) : (
-          <div className="w-full h-full bg-[var(--bg3)] flex items-center justify-center">
+          <div className="w-full bg-[var(--bg3)] flex items-center justify-center" style={{ height: 240 }}>
             <span className="label opacity-40">No image</span>
           </div>
         )}
