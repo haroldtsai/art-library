@@ -111,19 +111,22 @@ export default async function ItemPage({
             </div>
 
             {(item.tags ?? []).length > 0 && (
-              <div className="flex gap-2 flex-wrap mt-6 pt-5 border-t border-[var(--rule)]">
-                {item.tags!.map((tag) => (
-                  <Link key={tag} href={`/${category}?tag=${tag}`}
-                    className="label px-3 py-1 border border-[var(--rule)] hover:border-[var(--accent)] hover:text-[var(--accent)] transition-all">
-                    {tag}
-                  </Link>
-                ))}
+              <div className="mt-8 pt-6 border-t border-[var(--rule)]">
+                <p className="label mb-3">Tags</p>
+                <div className="flex gap-2 flex-wrap">
+                  {item.tags!.map((tag) => (
+                    <Link key={tag} href={`/${category}?tag=${tag}`}
+                      className="label px-3 py-1 border border-[var(--rule)] hover:border-[var(--accent)] hover:text-[var(--accent)] transition-all">
+                      {tag}
+                    </Link>
+                  ))}
+                </div>
               </div>
             )}
 
             {(item.refs ?? []).length > 0 && (
-              <div className="mt-5 pt-5 border-t border-[var(--rule)]">
-                <p className="label mb-[10px]">References</p>
+              <div className="mt-8 pt-6 border-t border-[var(--rule)]">
+                <p className="label mb-3">References</p>
                 {item.refs!.map((ref) => (
                   <a key={ref.url} href={ref.url} target="_blank" rel="noopener noreferrer"
                     className="label block mb-[6px] hover:text-[var(--accent)] transition-colors">
