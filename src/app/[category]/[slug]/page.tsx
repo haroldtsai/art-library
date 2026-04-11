@@ -143,25 +143,6 @@ export default async function ItemPage({
         </div>
       </div>
 
-      {/* Related */}
-      {related.length > 0 && (
-        <>
-          <div className="flex justify-between items-center px-12 py-[18px] border-b border-[var(--rule)] border-t border-t-[var(--rule)] bg-[var(--bg2)]">
-            <span className="label">Related Works</span>
-            <Link href={`/${category}`} className="label hover:text-[var(--text)] transition-colors">
-              More {formatCategory(category)} →
-            </Link>
-          </div>
-          <div className="grid gap-px bg-[var(--rule)] border-b border-[var(--rule)]"
-            style={{ gridTemplateColumns: isMusic ? 'repeat(4, 1fr)' : '1fr 1fr' }}>
-            {related.map((r) =>
-              isMusic
-                ? <VinylCard key={r.slug} item={r} />
-                : <ArtCard key={r.slug} item={r} />
-            )}
-          </div>
-        </>
-      )}
     </>
   )
 }
