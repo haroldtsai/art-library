@@ -16,14 +16,14 @@ export default function ItemGallery({ primary, title, extras, captionLabel }: Pr
   return (
     <>
       {/* Hero */}
-      <div className="relative overflow-hidden w-full" style={{ maxHeight: 520 }}>
+      <div className="overflow-hidden w-full">
         <Image
           src={active}
           alt={title}
           width={1400}
-          height={520}
-          className="w-full object-cover saturate-[0.85] contrast-[1.03]"
-          style={{ maxHeight: 520, display: 'block' }}
+          height={1400}
+          className="w-full h-auto saturate-[0.85] contrast-[1.03]"
+          style={{ display: 'block' }}
           priority
         />
         {captionLabel && (
