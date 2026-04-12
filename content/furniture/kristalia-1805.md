@@ -1,5 +1,5 @@
 ---
-title: 1805 Armchair
+title: 1805 Edition
 category: furniture
 artist: Bartoli Design
 label: Kristalia
@@ -14,7 +14,7 @@ medium: Oak frame, vegetable-tanned leather
 acquired: 私人收藏
 refs:
   - label: Kristalia Official
-    url: https://www.kristalia.it/
+    url: https://www.kristalia.it/en/products/1085-edition/
 ---
 
 Kristalia 1805 最讓人著迷的不是框架，是那張皮。
