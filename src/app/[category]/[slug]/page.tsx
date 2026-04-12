@@ -1,6 +1,5 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
-import Image from 'next/image'
 import { MDXRemote } from 'next-mdx-remote/rsc'
 import { getAllCategories, getItemsByCategory, getItem } from '@/lib/content'
 import Breadcrumb from '@/components/Breadcrumb'
@@ -71,7 +70,6 @@ export default async function ItemPage({
             primary={item.image}
             title={item.title}
             extras={item.images ?? []}
-            captionLabel={[formatCategory(category), item.year].filter(Boolean).join(' · ')}
           />
         </div>
 
@@ -110,26 +108,6 @@ export default async function ItemPage({
                 </div>
               ))}
             </div>
-
-            {(item.images ?? []).length > 0 && (
-              <div className="mt-8 pt-6 border-t border-[var(--rule)]">
-                <p className="label mb-3">Photos</p>
-                <div className="grid grid-cols-2 gap-2">
-                  {[item.image, ...item.images!].map((src, i) => (
-                    <button key={src} onClick={undefined}
-                      className="overflow-hidden block w-full">
-                      <Image
-                        src={src}
-                        alt={`${item.title} photo ${i + 1}`}
-                        width={400}
-                        height={400}
-                        className="w-full h-auto saturate-[0.85] hover:saturate-100 transition-all"
-                      />
-                    </button>
-                  ))}
-                </div>
-              </div>
-            )}
 
             {(item.tags ?? []).length > 0 && (
               <div className="mt-8 pt-6 border-t border-[var(--rule)]">

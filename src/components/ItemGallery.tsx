@@ -1,53 +1,68 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import Image from 'next/image'
 
 interface Props {
   primary: string
   title: string
   extras: string[]
-  captionLabel?: string
 }
 
-export default function ItemGallery({ primary, title, extras, captionLabel }: Props) {
-  const [active, setActive] = useState(primary)
+export default function ItemGallery({ primary, title, extras }: Props) {
+  const all = [primary, ...extras]
+  const [index, setIndex] = useState(0)
+  const touchStartX = useRef<number | null>(null)
+
+  function prev() { setIndex((i) => (i - 1 + all.length) % all.length) }
+  function next() { setIndex((i) => (i + 1) % all.length) }
+
+  function onTouchStart(e: React.TouchEvent) {
+    touchStartX.current = e.touches[0].clientX
+  }
+
+  function onTouchEnd(e: React.TouchEvent) {
+    if (touchStartX.current === null) return
+    const dx = e.changedTouches[0].clientX - touchStartX.current
+    if (dx > 50) prev()
+    else if (dx < -50) next()
+    touchStartX.current = null
+  }
 
   return (
-    <>
-      {/* Hero */}
-      <div className="overflow-hidden w-full">
-        <Image
-          src={active}
-          alt={title}
-          width={1400}
-          height={1400}
-          className="w-full h-auto saturate-[0.85] contrast-[1.03]"
-          style={{ display: 'block' }}
-          priority
-        />
-        {captionLabel && (
-          <span className="absolute bottom-4 right-5 label opacity-50 text-white"
-            style={{ fontSize: '0.5rem' }}>
-            {captionLabel}
-          </span>
-        )}
-      </div>
+    <div
+      className="relative select-none"
+      onTouchStart={onTouchStart}
+      onTouchEnd={onTouchEnd}
+    >
+      {/* Main image */}
+      <Image
+        src={all[index]}
+        alt={`${title} ${index + 1}`}
+        width={1400}
+        height={1400}
+        className="w-full h-auto saturate-[0.85] contrast-[1.03] block"
+        priority={index === 0}
+      />
 
-      {/* Thumbnails */}
-      {extras.length > 0 && (
-        <div className="grid gap-px bg-[var(--rule)] mt-5" style={{ gridTemplateColumns: '1fr 1fr' }}>
-          {[primary, ...extras].map((src) => (
-            <button key={src} onClick={() => setActive(src)}
-              className={`overflow-hidden relative block border-2 transition-all ${
-                active === src ? 'border-[var(--accent)]' : 'border-transparent'
-              }`}
-              style={{ height: 70 }}>
-              <Image src={src} alt={title} fill className="object-cover saturate-75 hover:saturate-100 transition-all" />
-            </button>
+      {/* Dots — only shown when multiple images */}
+      {all.length > 1 && (
+        <div className="flex justify-center gap-[7px] py-4">
+          {all.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setIndex(i)}
+              aria-label={`Photo ${i + 1}`}
+              className="rounded-full transition-all duration-200"
+              style={{
+                width: i === index ? 20 : 6,
+                height: 6,
+                background: i === index ? 'var(--accent)' : 'var(--rule)',
+              }}
+            />
           ))}
         </div>
       )}
-    </>
+    </div>
   )
 }
