@@ -61,27 +61,6 @@ export default function CategoryClient({ items, category, allTags }: Props) {
 
   return (
     <>
-      {/* Tag pills */}
-      {allTags.length > 0 && (
-        <div className="flex gap-2 flex-wrap px-12 py-4 border-b border-[var(--rule)] bg-[var(--bg)]">
-          {allTags.map((tag) => (
-            <button key={tag} onClick={() => toggleTag(tag)}
-              className={`label px-3 py-[4px] border transition-all ${
-                activeTags.includes(tag)
-                  ? 'border-[var(--accent)] text-[var(--accent)]'
-                  : 'border-[var(--rule)] hover:border-[var(--accent)] hover:text-[var(--accent)]'
-              }`}>
-              {tag}
-            </button>
-          ))}
-          {activeTags.length > 0 && (
-            <button onClick={() => setActiveTags([])} className="label px-3 py-[4px] border border-[var(--rule)] hover:text-[var(--text)] transition-colors">
-              Clear ×
-            </button>
-          )}
-        </div>
-      )}
-
       {/* Sort + count */}
       <SectionHead title={`${filtered.length} works`} right={
         <>
