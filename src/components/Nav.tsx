@@ -41,6 +41,13 @@ export default function Nav() {
             All Works
           </Link>
         </li>
+        <li>
+          <Link href="/about"
+            className="hover:text-[var(--text)] transition-colors"
+            style={{ fontSize: '0.8125rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: 'var(--muted)' }}>
+            About
+          </Link>
+        </li>
       </ul>
 
       <span className="label">{total} works</span>
