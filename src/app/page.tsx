@@ -40,6 +40,14 @@ export default function HomePage() {
 
   return (
     <>
+      {/* Opening statement */}
+      <div className="px-12 py-16 border-b border-[var(--rule)]">
+        <p className="font-serif italic text-[var(--text)] leading-relaxed" style={{ fontSize: '1.3125rem', maxWidth: '42rem' }}>
+          A private collection of art, furniture, music, and personal works—
+          things I live with, listen to, and keep looking at over time.
+        </p>
+      </div>
+
       {featured.length > 0 && (
         <>
           <SectionHead title="Featured Works" right={
