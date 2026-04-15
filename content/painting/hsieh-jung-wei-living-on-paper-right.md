@@ -9,4 +9,7 @@ featured: false
 dateAdded: "2026-04-16"
 medium: 中性筆、自來水筆、紙本
 size: 75 × 75 cm
+refs:
+  - label: mingshanart
+    url: https://www.mingshanart.com
 ---

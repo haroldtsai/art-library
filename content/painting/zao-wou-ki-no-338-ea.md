@@ -10,6 +10,8 @@ dateAdded: "2026-04-16"
 medium: 石版版畫
 size: 46.5 × 58 cm
 refs:
+  - label: mingshanart
+    url: https://www.mingshanart.com
   - label: Zao Wou-Ki Foundation
     url: https://www.zaowoukirecord.com
 ---

@@ -9,4 +9,7 @@ featured: false
 dateAdded: "2026-04-16"
 medium: 膠彩紙本
 size: 22 × 26.8 cm
+refs:
+  - label: mingshanart
+    url: https://www.mingshanart.com
 ---

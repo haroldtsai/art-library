@@ -9,4 +9,7 @@ featured: false
 dateAdded: "2026-04-16"
 medium: 油彩畫布
 size: 25 × 45 cm
+refs:
+  - label: mingshanart
+    url: https://www.mingshanart.com
 ---

@@ -9,4 +9,7 @@ featured: false
 dateAdded: "2026-04-16"
 medium: 水墨絹本
 size: 123 × 110 cm
+refs:
+  - label: mingshanart
+    url: https://www.mingshanart.com
 ---

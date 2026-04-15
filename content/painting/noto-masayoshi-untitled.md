@@ -9,4 +9,7 @@ featured: false
 dateAdded: "2026-04-16"
 medium: 壓克力顏料、銀箔、鋁箔、棉布、木板
 size: 45.5 × 38 cm
+refs:
+  - label: mingshanart
+    url: https://www.mingshanart.com
 ---
